@@ -1,7 +1,7 @@
 import { createStore, compse } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import{ browserHistory } from 'react-router';
-import { rootReducer } from './reducers/index';
+import { default as rootReducer } from './reducers/index';
 
 import comments from './data/comments';
 import posts from './data/posts';
@@ -11,9 +11,15 @@ import posts from './data/posts';
     posts,
     comments
   };
-
   const store = createStore(rootReducer, defaultState);
 
-  export const histroy = syncHistoryWithStore(browserHistory, store)
+  export const history = syncHistoryWithStore(browserHistory, store)
+  //
+  // if(module.hot) {
+  //   module.hot.accept('./reducers', () => {
+  //     const nextRootReducer = required('./reducers/index').default;
+  //     store.replaceReducer(nextRootReducer)
+  //   })
+  // }
 
   export default store;
